@@ -1,0 +1,243 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Bahis Fund Collection System - Islamic Purple Theme */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap');
+
+@layer base {
+  :root {
+    /* Purple-oriented Islamic theme */
+    --background: 270 50% 98%;
+    --foreground: 270 60% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 270 60% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 270 60% 10%;
+
+    /* Strong purple primary */
+    --primary: 270 77% 40%;
+    --primary-foreground: 0 0% 100%;
+
+    /* Soft lavender secondary */
+    --secondary: 270 80% 90%;
+    --secondary-foreground: 270 60% 20%;
+
+    --muted: 270 30% 95%;
+    --muted-foreground: 270 20% 40%;
+
+    /* Gold accent for highlights */
+    --accent: 42 90% 55%;
+    --accent-foreground: 42 90% 15%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Success green */
+    --success: 142 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    /* Warning amber */
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 10%;
+
+    --border: 270 30% 88%;
+    --input: 270 30% 88%;
+    --ring: 270 77% 40%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(270 77% 40%) 0%, hsl(280 70% 50%) 50%, hsl(290 65% 55%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(270 50% 99%) 0%, hsl(270 40% 97%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(270 77% 30%) 0%, hsl(280 70% 40%) 100%);
+    --gradient-gold: linear-gradient(135deg, hsl(42 90% 55%) 0%, hsl(38 85% 50%) 100%);
+
+    /* Shadows */
+    --shadow-sm: 0 2px 8px -2px hsl(270 60% 30% / 0.1);
+    --shadow-md: 0 4px 16px -4px hsl(270 60% 30% / 0.15);
+    --shadow-lg: 0 8px 32px -8px hsl(270 60% 30% / 0.2);
+    --shadow-glow: 0 0 24px -4px hsl(270 77% 50% / 0.4);
+
+    /* Sidebar */
+    --sidebar-background: 270 77% 35%;
+    --sidebar-foreground: 270 20% 95%;
+    --sidebar-primary: 42 90% 55%;
+    --sidebar-primary-foreground: 42 90% 10%;
+    --sidebar-accent: 270 70% 45%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 270 60% 45%;
+    --sidebar-ring: 42 90% 55%;
+  }
+
+  .dark {
+    --background: 270 50% 8%;
+    --foreground: 270 20% 95%;
+
+    --card: 270 40% 12%;
+    --card-foreground: 270 20% 95%;
+
+    --popover: 270 40% 12%;
+    --popover-foreground: 270 20% 95%;
+
+    --primary: 270 80% 65%;
+    --primary-foreground: 270 60% 10%;
+
+    --secondary: 270 40% 20%;
+    --secondary-foreground: 270 20% 90%;
+
+    --muted: 270 30% 18%;
+    --muted-foreground: 270 20% 60%;
+
+    --accent: 42 90% 55%;
+    --accent-foreground: 42 90% 10%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 0 0% 100%;
+
+    --success: 142 70% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --warning: 38 92% 50%;
+    --warning-foreground: 38 92% 10%;
+
+    --border: 270 30% 22%;
+    --input: 270 30% 22%;
+    --ring: 270 80% 65%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(270 80% 55%) 0%, hsl(280 75% 60%) 50%, hsl(290 70% 65%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(270 40% 14%) 0%, hsl(270 35% 12%) 100%);
+    --gradient-header: linear-gradient(135deg, hsl(270 70% 20%) 0%, hsl(280 65% 30%) 100%);
+
+    --sidebar-background: 270 50% 10%;
+    --sidebar-foreground: 270 20% 95%;
+    --sidebar-primary: 42 90% 55%;
+    --sidebar-primary-foreground: 42 90% 10%;
+    --sidebar-accent: 270 60% 30%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 270 40% 20%;
+    --sidebar-ring: 42 90% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-semibold tracking-tight;
+  }
+
+  /* Arabic/Islamic heading font */
+  .font-islamic {
+    font-family: 'Amiri', serif;
+  }
+}
+
+@layer components {
+  /* Islamic geometric pattern overlay */
+  .islamic-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%236B21A8' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .islamic-arch-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%236B21A8' stroke-opacity='0.08' stroke-width='1'%3E%3Cpath d='M40 10 Q50 10 50 20 L50 40 Q50 50 40 50 Q30 50 30 40 L30 20 Q30 10 40 10 Z'/%3E%3Cpath d='M40 30 Q45 30 45 35 L45 45 Q45 50 40 50 Q35 50 35 45 L35 35 Q35 30 40 30 Z'/%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .gradient-primary {
+    background: var(--gradient-primary);
+  }
+
+  .gradient-header {
+    background: var(--gradient-header);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-gold {
+    background: var(--gradient-gold);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Crescent moon decoration */
+  .crescent-decoration::before {
+    content: '☪';
+    @apply text-accent opacity-60;
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-smooth hover:shadow-lg hover:-translate-y-1;
+  }
+
+  /* Button glow effect on hover */
+  .btn-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Responsive text sizes */
+  .text-responsive-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .text-responsive-base {
+    @apply text-sm sm:text-base;
+  }
+
+  .text-responsive-lg {
+    @apply text-base sm:text-lg md:text-xl;
+  }
+
+  .text-responsive-xl {
+    @apply text-lg sm:text-xl md:text-2xl;
+  }
+
+  .text-responsive-2xl {
+    @apply text-xl sm:text-2xl md:text-3xl;
+  }
+
+  .text-responsive-3xl {
+    @apply text-2xl sm:text-3xl md:text-4xl;
+  }
+
+  /* Safe area padding for mobile */
+  .safe-padding-x {
+    @apply px-4 sm:px-6 md:px-8;
+  }
+
+  .safe-padding-y {
+    @apply py-4 sm:py-6 md:py-8;
+  }
+}

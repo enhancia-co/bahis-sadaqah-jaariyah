@@ -41,6 +41,7 @@ export default function CollectionPage() {
   const [notes, setNotes] = useState<string>('');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
+  const [isDatePickerOpen, setIsDatePickerOpen] = useState(false);
 
   const contributor = mockContributors.find(c => c.id === selectedContributor);
   const recentCollections = mockCollections.filter(c => c.contributorId === selectedContributor).slice(0, 3);
@@ -139,7 +140,7 @@ export default function CollectionPage() {
                       {/* Date */}
                       <div className="space-y-2">
                         <Label>Collection Date *</Label>
-                        <Popover>
+                        <Popover open={isDatePickerOpen} onOpenChange={setIsDatePickerOpen}>
                           <PopoverTrigger asChild>
                             <Button
                               variant="outline"
@@ -156,7 +157,12 @@ export default function CollectionPage() {
                             <Calendar
                               mode="single"
                               selected={date}
-                              onSelect={(d) => d && setDate(d)}
+                              onSelect={(d) => {
+                                if (d) {
+                                  setDate(d);
+                                  setIsDatePickerOpen(false);
+                                }
+                              }}
                               initialFocus
                             />
                           </PopoverContent>

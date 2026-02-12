@@ -12,6 +12,8 @@ import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import { ScrollToTop } from "./components/ScrollToTop";
+import ProtectedRoute from './routes/ProtectedRoute';
+import PublicRoute from './routes/PublicRoute';
 
 const queryClient = new QueryClient();
 
@@ -23,14 +25,18 @@ const App = () => (
       <BrowserRouter>
         <ScrollToTop />
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/contributors" element={<Contributors />} />
-          <Route path="/collection" element={<Collection />} />
-          <Route path="/reports" element={<Reports />} />
-          {/* <Route path="/notifications" element={<Notifications />} /> */}
-          <Route path="/settings" element={<Settings />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route element={<PublicRoute />}>
+            <Route path="/login" element={<Login />} />
+          </Route>
+          <Route element={<ProtectedRoute />}>
+            <Route path="/" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/contributors" element={<Contributors />} />
+            <Route path="/collection" element={<Collection />} />
+            <Route path="/reports" element={<Reports />} />
+            {/* <Route path="/notifications" element={<Notifications />} /> */}
+            <Route path="/settings" element={<Settings />} />
+          </Route>
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

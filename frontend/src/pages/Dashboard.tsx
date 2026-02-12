@@ -24,9 +24,9 @@ export default function Dashboard() {
           </div>
           <div className="relative z-10">
             <p className="text-sm sm:text-base opacity-80 font-bold">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ</p>
-            <h1 className="text-responsive-2xl font-bold mt-2">Welcome to Bahis</h1>
+            <h1 className="text-responsive-2xl font-bold mt-2">Welcome to Bahis - Sadaqah Jaariyah</h1>
             <p className="text-responsive-base opacity-80 mt-1">
-              Swadakathun Jariyaah Fund Management System
+              Sadaqah Jaariyah Fund Management System
             </p>
             <div className="flex flex-wrap gap-3 mt-4">
               <Link to="/collection">
@@ -57,8 +57,8 @@ export default function Dashboard() {
           <StatCard
             title="This Month"
             value={formatCurrency(stats.thisMonthCollection)}
-            trend={{ value: Math.abs(stats.growthPercentage), isPositive: stats.growthPercentage >= 0 }}
-            subtitle="vs last month"
+            // trend={{ value: Math.abs(stats.growthPercentage), isPositive: stats.growthPercentage >= 0 }}
+            // subtitle="vs last month"
             icon={TrendingUp}
             variant="accent"
           />
@@ -173,7 +173,7 @@ export default function Dashboard() {
               <div>
                 <h3 className="text-lg font-semibold text-foreground">Monthly Target Progress</h3>
                 <p className="text-sm text-muted-foreground">
-                  {formatCurrency(stats.thisMonthCollection)} of {formatCurrency(50000)} collected this month
+                  {formatCurrency(stats.thisMonthCollection)} of {formatCurrency(15000)} collected this month
                 </p>
               </div>
             </div>
@@ -181,11 +181,11 @@ export default function Dashboard() {
               <div className="flex-1 sm:w-48 h-3 bg-muted rounded-full overflow-hidden">
                 <div 
                   className="h-full gradient-primary rounded-full transition-all duration-500"
-                  style={{ width: `${Math.min((stats.thisMonthCollection / 50000) * 100, 100)}%` }}
+                  style={{ width: `${Math.min((stats.thisMonthCollection / 15000) * 100, 100)}%` }}
                 />
               </div>
               <span className="text-sm font-semibold text-primary">
-                {Math.round((stats.thisMonthCollection / 50000) * 100)}%
+                {Math.round((stats.thisMonthCollection / 15000) * 100)}%
               </span>
             </div>
           </CardContent>

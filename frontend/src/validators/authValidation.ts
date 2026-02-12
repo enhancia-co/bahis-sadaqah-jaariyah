@@ -17,10 +17,10 @@ export const validateForm = (data: FormData, isSignup: boolean = false): Validat
   }
 
   // Email validation
-  if (!data.email || data.email.trim() === '') {
-    errors.email = 'Email is required';
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
-    errors.email = 'Please enter a valid email address';
+  if (!data.username || data.username.trim() === '') {
+    errors.username = 'Username is required';
+  } else if (!/^[a-zA-Z0-9]+$/.test(data.username)) {
+    errors.username = 'Please enter a valid username';
   }
 
   // Password validation
@@ -52,10 +52,10 @@ export const hasErrors = (errors: ValidationErrors): boolean => {
   return Object.keys(errors).length > 0;
 };
 
-export const validateLoginForm = (data: { email: string; password: string }): ValidationErrors => {
+export const validateLoginForm = (data: { username: string; password: string }): ValidationErrors => {
   return validateForm(data, false);
 };
 
-export const validateRegisterForm = (data: { name: string; email: string; password: string; confirmPassword: string }): ValidationErrors => {
+export const validateRegisterForm = (data: { name: string; username: string; password: string; confirmPassword: string }): ValidationErrors => {
   return validateForm(data, true);
 };

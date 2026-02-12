@@ -1,32 +1,72 @@
 import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Eye, EyeOff, LogIn, Mail, Lock, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Eye, EyeOff, LogIn, Mail, Lock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardDescription, CardHeader } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
+import logo from '../../public/logo.png';
+import { validateLoginForm } from '@/validators/authValidation';
+import { setUser } from '@/redux/authSlice';
+
+// Demo credentials (temporary – replace with real auth later)
+const DEMO_USERNAME = 'user123';
+const DEMO_PASSWORD = 'Bahis@Demo123!Secure';
 
 export default function Login() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
     const { toast } = useToast();
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const [formData, setFormData] = useState({
-        email: '',
-        password: '',
+        username: 'user123',
+        password: 'Bahis@Demo123!Secure',
     });
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
+
+        const errors = validateLoginForm(formData);
+        if (Object.keys(errors).length > 0) {
+            toast({
+                title: "Validation Error",
+                description: errors.username || errors.password || "Please check your input fields.",
+                variant: "destructive",
+            });
+            return;
+        }
+
+        const isDemoCredentials =
+            formData.username.trim() === DEMO_USERNAME && formData.password === DEMO_PASSWORD;
+
+        if (!isDemoCredentials) {
+            toast({
+                title: "Login Failed",
+                description: "Invalid username or password. Please try again.",
+                variant: "destructive",
+            });
+            return;
+        }
+
         setIsLoading(true);
-
-        // Simulate API call
         try {
-            // TODO: Replace with actual authentication API call
-            await new Promise((resolve) => setTimeout(resolve, 1500));
+            // Simulate loading (replace with real auth call later)
+            await new Promise((resolve) => setTimeout(resolve, 3000));
 
-            // Mock successful login
+            dispatch(
+                setUser({
+                    user: {
+                        id: 'demo',
+                        name: 'Demo User',
+                        email: 'user123',
+                        role: 'user',
+                    },
+                })
+            );
+
             toast({
                 title: "Login Successful",
                 description: "Welcome back to Bahis!",
@@ -36,7 +76,7 @@ export default function Login() {
         } catch (error) {
             toast({
                 title: "Login Failed",
-                description: "Invalid email or password. Please try again.",
+                description: "Something went wrong. Please try again.",
                 variant: "destructive",
             });
         } finally {
@@ -88,15 +128,13 @@ export default function Login() {
 
                         <CardHeader className="space-y-1 text-center ">
                             <div className="flex flex-col items-center justify-center gap-2">
-                                <div className="flex h-12 w-12 items-center justify-center rounded-2xl gradient-primary text-primary-foreground shadow-glow">
-                                    <span className="text-3xl">☪</span>
-                                </div>
+                            <img src={logo} alt="Logo" className="h-9 w -9 sm:h-11 sm:w-11 rounded-xl" />
                                 <h1 className="text-responsive-3xl font-bold gradient-primary bg-clip-text text-transparent">
                                     Bahis
                                 </h1>
                             </div>
                             <CardDescription>
-                                Swadakathun Jariyaah Fund Management
+                            Sadaqah Jaariyah Fund Management
                             </CardDescription>
                         </CardHeader>
 
@@ -104,18 +142,18 @@ export default function Login() {
                             <form onSubmit={handleSubmit} className="space-y-4 mt-4">
                                 {/* Email Field */}
                                 <div className="space-y-2">
-                                    <Label htmlFor="email" className="text-sm font-medium">
-                                        Email Address
+                                    <Label htmlFor="username" className="text-sm font-medium">
+                                        Username
                                     </Label>
                                     <div className="relative">
                                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                                         <Input
-                                            id="email"
-                                            name="email"
-                                            type="email"
-                                            placeholder="your.email@example.com"
+                                            id="username"
+                                            name="username"
+                                            type="text"
+                                            placeholder="Enter your username"
                                             required
-                                            value={formData.email}
+                                            value={formData.username}
                                             onChange={handleChange}
                                             className="pl-10 h-11 transition-smooth focus:shadow-glow border-input"
                                             disabled={isLoading}

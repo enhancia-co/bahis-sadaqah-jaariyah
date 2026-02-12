@@ -3,13 +3,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { IUser } from "../types";
 
 interface AuthState {
-    user: IUser | null;
+    // user: IUser | null;
     isAuthenticated: boolean;
 }
 
 const intialState: AuthState = {
-    isAuthenticated: localStorage.getItem('user') ? true : false,
-    user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null,
+    isAuthenticated: localStorage.getItem('isAuthenticated')===JSON.stringify(true) ? true : false,
+    // user: localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')!) : null,
 }
 
 const authSlice = createSlice({
@@ -18,13 +18,15 @@ const authSlice = createSlice({
     reducers: {
         setUser: (state, action: PayloadAction<{ user: IUser }>) => {
             state.isAuthenticated = true;
-            state.user = action.payload.user;
-            localStorage.setItem('user', JSON.stringify(action.payload.user));
+            localStorage.setItem('isAuthenticated', JSON.stringify(true));
+            // state.user = action.payload.user;
+            // localStorage.setItem('user', JSON.stringify(action.payload.user));
         },
         clearUser: (state) => {
             state.isAuthenticated = false;  
-            state.user = null;
-            localStorage.removeItem('user');
+            localStorage.setItem('isAuthenticated', JSON.stringify(false));
+            // state.user = null;
+            // localStorage.removeItem('user');
         },
     },
 });

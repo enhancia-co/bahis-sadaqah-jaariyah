@@ -19,7 +19,7 @@ export default function Settings() {
 
         <div className="grid gap-6">
           {/* Organization Settings */}
-          <Card className="shadow-card">
+          {/* <Card className="shadow-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Building2 className="h-5 w-5 text-primary" />
@@ -54,10 +54,10 @@ export default function Settings() {
               </div>
               <Button className="mt-2">Save Changes</Button>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* Notification Settings */}
-          <Card className="shadow-card">
+          {/* <Card className="shadow-card">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Bell className="h-5 w-5 text-primary" />
@@ -92,7 +92,7 @@ export default function Settings() {
                 <Switch />
               </div>
             </CardContent>
-          </Card>
+          </Card> */}
 
           {/* Security Settings */}
           <Card className="shadow-card">

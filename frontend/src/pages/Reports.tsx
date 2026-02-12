@@ -133,7 +133,7 @@ export default function Reports() {
             </Card>
 
             {/* Monthly Breakdown Table */}
-            <Card className="shadow-card">
+            {/* <Card className="shadow-card">
               <CardHeader>
                 <CardTitle className="text-responsive-lg">Monthly Breakdown</CardTitle>
               </CardHeader>
@@ -167,7 +167,7 @@ export default function Reports() {
                   </table>
                 </div>
               </CardContent>
-            </Card>
+            </Card> */}
           </TabsContent>
 
           <TabsContent value="payment">
